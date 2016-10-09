@@ -74,7 +74,7 @@ function pathExists(path) {
     }
 }
 
-function getServer() {
+function getServer(app) {
     const bConfigs = getBmateConfigs();
 
     if (bConfigs.useSecureServer) {
@@ -86,12 +86,24 @@ function getServer() {
             NPNProtocols:   ['https/2.0', 'http/1.1', 'sdpy', 'http/1.0']
         };
 
-        return require('https').createServer(options);
+        if (app)
+            return require('https').Server(options, app);
+        else
+            return require('https').createServer(options);
     } else {
         console.log('Using HTTP');
 
-        return require('http').createServer();
+        if (app)
+            return require('http').createServer();
+        else
+            require('http').Server(app);
     }
+}
+
+function getWebAppPort() {
+    const bConfigs = getBmateConfigs();
+
+    return bConfigs.webAppPort || 80;
 }
 
 module.exports = {
