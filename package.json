@@ -1,0 +1,19 @@
+{
+  "name": "butils",
+  "version": "1.0.0",
+  "description": "Utils methods for the bmate applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xclassworks/butils.git"
+  },
+  "author": "Matheus Paiva",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/xclassworks/butils/issues"
+  },
+  "homepage": "https://github.com/xclassworks/butils#readme"
+}
