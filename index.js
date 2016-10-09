@@ -49,7 +49,7 @@ function getBmateConfigs() {
         spawnError(`The configs file for bmate does not exists. ${configsPath}`);
     }
 
-    return fs.readFileSync(configsPath, 'utf8');
+    return require(configsPath);
 }
 
 function bmateHomeExists() {
@@ -80,7 +80,7 @@ module.exports = {
     bmateHomeExists:        bmateHomeExists,
     pathExists:             pathExists,
     spawnError:             spawnError,
-    
+
     SSL:                    {
         checkSSLCertificate:    checkSSLCertificate,
         getKey:                 getKey,
