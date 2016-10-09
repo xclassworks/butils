@@ -111,6 +111,7 @@ module.exports = {
     getBmateConfigs:        getBmateConfigs,
     bmateHomeExists:        bmateHomeExists,
     getServer:              getServer,
+    getWebAppPort:          getWebAppPort,
     pathExists:             pathExists,
     spawnError:             spawnError,
 
