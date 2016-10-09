@@ -74,10 +74,31 @@ function pathExists(path) {
     }
 }
 
+function getServer() {
+    const bConfigs = getBmateConfigs();
+
+    if (bConfigs.useSecureServer) {
+        console.log('Using secure server HTTPS');
+
+        const options = {
+            key:            getKey(),
+            cert:           getCert(),
+            NPNProtocols:   ['https/2.0', 'http/1.1', 'sdpy', 'http/1.0']
+        };
+
+        return require('https').createServer(options);
+    } else {
+        console.log('Using HTTP');
+
+        return require('http').createServer();
+    }
+}
+
 module.exports = {
     checkBmateHome:         checkBmateHome,
     getBmateConfigs:        getBmateConfigs,
     bmateHomeExists:        bmateHomeExists,
+    getServer:              getServer,
     pathExists:             pathExists,
     spawnError:             spawnError,
 
