@@ -25,6 +25,14 @@ function checkSSLCertificate() {
     }
 }
 
+function getKey() {
+    return fs.readFileSync(`${BMATE_HOME}/SSLCertificate/key.pem`);
+}
+
+function getCert() {
+    fs.readFileSync(`${BMATE_HOME}/SSLCertificate/cert.pem`);
+}
+
 function checkBmateHome() {
 
     if (!bmateHomeExists())
@@ -67,10 +75,15 @@ function pathExists(path) {
 }
 
 module.exports = {
-    checkSSLCertificate:    checkSSLCertificate,
     checkBmateHome:         checkBmateHome,
     getBmateConfigs:        getBmateConfigs,
     bmateHomeExists:        bmateHomeExists,
     pathExists:             pathExists,
-    spawnError:             spawnError
+    spawnError:             spawnError,
+    
+    SSL:                    {
+        checkSSLCertificate:    checkSSLCertificate,
+        getKey:                 getKey,
+        getCert:                getCert
+    }
 };
