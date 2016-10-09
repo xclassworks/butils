@@ -30,7 +30,7 @@ function getKey() {
 }
 
 function getCert() {
-    fs.readFileSync(`${BMATE_HOME}/SSLCertificate/cert.pem`);
+    return fs.readFileSync(`${BMATE_HOME}/SSLCertificate/cert.pem`);
 }
 
 function checkBmateHome() {
@@ -87,7 +87,7 @@ function getServer(app) {
         };
 
         if (app)
-            return require('https').Server(options, app);
+            return require('https').createServer(options, app);
         else
             return require('https').createServer(options);
     } else {
@@ -96,14 +96,23 @@ function getServer(app) {
         if (app)
             return require('http').createServer();
         else
-            require('http').Server(app);
+            return require('http').createServer(app);
     }
 }
 
 function getWebAppPort() {
     const bConfigs = getBmateConfigs();
+    const port = bConfigs.webAppPort;
 
-    return bConfigs.webAppPort || 80;
+    if (!port) {
+
+        if (bConfigs.useSecureServer)
+            return 443;
+        else
+            return 80;
+    }
+
+    return port;
 }
 
 module.exports = {
