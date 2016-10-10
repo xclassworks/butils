@@ -94,9 +94,9 @@ function getServer(app) {
         console.log('Using HTTP');
 
         if (app)
-            return require('http').createServer();
-        else
             return require('http').createServer(app);
+        else
+            return require('http').createServer();
     }
 }
 
