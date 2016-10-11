@@ -80,6 +80,8 @@ function getServer(app) {
     if (bConfigs.useSecureServer) {
         console.log('Using secure server HTTPS');
 
+        checkSSLCertificate();
+
         const options = {
             key:            getKey(),
             cert:           getCert(),
